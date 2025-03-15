@@ -8,7 +8,12 @@ import eu.ace_design.island.bot.IExplorerRaid;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import ca.mcmaster.se2aa4.island.teamXXX.Direction;
+import ca.mcmaster.se2aa4.island.teamXXX.Drone;
+import ca.mcmaster.se2aa4.island.teamXXX.Decision;
 public class Explorer implements IExplorerRaid {
+    private Drone drone;
+    private Decision decision;
 
     private final Logger logger = LogManager.getLogger();
 
@@ -16,19 +21,24 @@ public class Explorer implements IExplorerRaid {
     public void initialize(String s) {
         logger.info("** Initializing the Exploration Command Center");
         JSONObject info = new JSONObject(new JSONTokener(new StringReader(s)));
+
+        this.decision = new Decision();
+
         logger.info("** Initialization info:\n {}",info.toString(2));
-        String direction = info.getString("heading");
+        Direction heading = Direction.toDirection(info.getString("heading"));
         Integer batteryLevel = info.getInt("budget");
-        logger.info("The drone is facing {}", direction);
+        this.drone = new Drone(batteryLevel, heading);
+        logger.info("The drone is facing {}", heading);
         logger.info("Battery level is {}", batteryLevel);
     }
 
     @Override
     public String takeDecision() {
-        JSONObject decision = new JSONObject();
-        decision.put("action", "stop"); // we stop the exploration immediately
-        logger.info("** Decision: {}",decision.toString());
-        return decision.toString();
+        //JSONObject decision = new JSONObject();
+        //decision.put("action", "stop"); // we stop the exploration immediately
+        //logger.info("** Decision: {}",decision.toString());
+        //return decision.toString();
+        return this.decision.makeDecision(this.drone);
     }
 
     @Override
