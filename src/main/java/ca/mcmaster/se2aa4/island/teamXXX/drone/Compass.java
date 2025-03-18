@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX;
+package ca.mcmaster.se2aa4.island.teamXXX.drone;
 import java.util.EnumMap;
 import java.util.Map;
 public class Compass {

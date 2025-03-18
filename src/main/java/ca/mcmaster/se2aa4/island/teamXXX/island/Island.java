@@ -1,8 +1,8 @@
-package ca.mcmaster.se2aa4.island.teamXXX;
-import ca.mcmaster.se2aa4.island.teamXXX.Drone;
+package ca.mcmaster.se2aa4.island.teamXXX.island;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 import ca.mcmaster.se2aa4.island.teamXXX.Data;
-import ca.mcmaster.se2aa4.island.teamXXX.Signal;
-import ca.mcmaster.se2aa4.island.teamXXX.Commands;
+import ca.mcmaster.se2aa4.island.teamXXX.island.Signal;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Commands;
 import org.json.JSONArray;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
