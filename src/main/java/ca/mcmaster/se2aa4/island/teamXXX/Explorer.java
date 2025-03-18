@@ -10,9 +10,7 @@ import org.json.JSONTokener;
 
 import ca.mcmaster.se2aa4.island.teamXXX.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.Drone;
-import ca.mcmaster.se2aa4.island.teamXXX.Island;
-import ca.mcmaster.se2aa4.island.teamXXX.Handler;
-import ca.mcmaster.se2aa4.island.teamXXX.Test;
+
 public class Explorer implements IExplorerRaid {
     private Drone drone;
   
