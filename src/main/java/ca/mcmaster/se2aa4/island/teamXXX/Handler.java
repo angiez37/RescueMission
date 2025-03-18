@@ -2,7 +2,6 @@ package ca.mcmaster.se2aa4.island.teamXXX;
 import ca.mcmaster.se2aa4.island.teamXXX.Commands;
 import ca.mcmaster.se2aa4.island.teamXXX.Island;
 import ca.mcmaster.se2aa4.island.teamXXX.Navigate;
-import ca.mcmaster.se2aa4.island.teamXXX.Test;
 
 import org.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
