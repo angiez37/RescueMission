@@ -65,11 +65,16 @@ public class Explorer implements IExplorerRaid {
         this.island.update(data);
         this.drone.updateBattery(data.getCost());
         logger.info("The battery level is now: {}", this.drone.getBattery());
+        logger.info("The creeks are: {}", this.island.getCreeks());
+        logger.info("The sites are: {}", this.island.getSites());
     }
 
     @Override
     public String deliverFinalReport() {
-        return "no creek found";
+        logger.info("** Final report:");
+        //logger.info("The creeks are: {}", this.island.getCreeks());
+        //logger.info("The sites are: {}", this.island.getSites());
+        return ("no creeks found");
     }
 
 }

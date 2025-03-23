@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.island.teamXXX;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Commands;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 import ca.mcmaster.se2aa4.island.teamXXX.island.Island;
-import ca.mcmaster.se2aa4.island.teamXXX.island.Navigate;
+import ca.mcmaster.se2aa4.island.teamXXX.island.NavigateHandler;
 
 import org.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
@@ -12,12 +12,12 @@ public class Handler {
     private final Logger logger = LogManager.getLogger();
     private Commands commandChosen;
     //private Test test;
-    private Navigate navigate;
+    private NavigateHandler navigate;
 
 
     private Integer batteryThresh = 100;
 
-    public Handler() {this.navigate = new Navigate();}
+    public Handler() {this.navigate = new NavigateHandler();}
 
     public void setCommand(Commands command) { this.commandChosen = command; }
 

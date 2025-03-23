@@ -7,6 +7,9 @@ import org.json.JSONArray;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Island {
     private final Logger logger = LogManager.getLogger();
     private Data response;
@@ -18,6 +21,10 @@ public class Island {
     private Integer rightRange;
     private Signal left;
     private Integer leftRange;
+    private List<String> creeks = new ArrayList<>();
+    private List<String> Sites = new ArrayList<>();
+    //private JSONArray sites;
+    //private JSONArray creeks;
 
     public Island(Drone drone) {
         this.drone = drone;
@@ -28,6 +35,8 @@ public class Island {
         this.rightRange = 0;
         this.left = Signal.UNKNOWN;
         this.leftRange = 0;
+        //this.sites = null;
+        //this.creeks = null;
     }
 
 
@@ -97,6 +106,22 @@ public class Island {
         }
     }
 
+    private void updateCreeks(JSONArray creeks) {
+        if (creeks != null) {
+            for (int i = 0; i < creeks.length(); i++){
+                this.creeks.add(creeks.getString(i));
+            }
+        }
+    }
+
+    private void updateSites(JSONArray sites) {
+        if (sites != null) {
+            for (int i = 0; i < sites.length(); i++){
+                this.Sites.add(sites.getString(i));
+            }
+        }
+    }
+
     public void update(Data response) {
         this.response = response;
         Commands commandChosen = this.response.getCommand();
@@ -113,7 +138,19 @@ public class Island {
         } else if (commandChosen == Commands.SCAN) {
             JSONArray creeks = this.response.getCreeks();
             JSONArray sites = this.response.getSites();
+            updateCreeks(creeks);
+            updateSites(sites);
         }
+    }
+
+
+
+    public String getCreeks() {
+        return String.join("\n", this.creeks);
+    }
+
+    public String getSites() {
+        return String.join("\n", this.Sites);
     }
 
     
