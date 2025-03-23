@@ -4,6 +4,7 @@ import ca.mcmaster.se2aa4.island.teamXXX.island.Island;
 import ca.mcmaster.se2aa4.island.teamXXX.Handler;
 import ca.mcmaster.se2aa4.island.teamXXX.island.Signal;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Commands;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 
 import org.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +16,8 @@ public class GroundNavigate implements Navigate {
     private Integer iteration = 0;
     private Integer outOfRangeIteration = 0;
     private Integer groundIteration = 0;
+
+    private Direction groundDirection = null; 
 
 
     public GroundNavigate() {}
@@ -79,6 +82,11 @@ public class GroundNavigate implements Navigate {
                 this.groundIteration++;
                 handler.setCommand(Commands.FLY);
                 logger.info("ground almost found");
+                //if(this.groundFound == island.getForwardRange() +1){
+                    //this.groundDireciton = drone.getHeading();
+                  //  logger.info("direction facing when found:{}", this.groundDireciton);
+
+                //}
                 return drone.fly();
             } else {
                 this.groundIteration = 0;
@@ -97,6 +105,8 @@ public class GroundNavigate implements Navigate {
                 return drone.fly();
             }else if (this.groundIteration == 2) {
                 this.groundIteration++;
+                this.groundDirection = drone.getHeading();
+                logger.info("starting direction, {}", this.groundDirection);
                 handler.setCommand(Commands.SCAN);
                 groundFound = true;
                 return drone.scan();
@@ -106,6 +116,10 @@ public class GroundNavigate implements Navigate {
             return drone.stop();
         }
         return handler.makeDecision(drone, island);
+    }
+
+    public Direction getStartDirection(){
+        return groundDirection;
     }
     
 }
