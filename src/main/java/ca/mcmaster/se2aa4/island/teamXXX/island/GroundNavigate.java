@@ -46,12 +46,37 @@ public class GroundNavigate implements Navigate {
                 this.outOfRangeIteration++;
                 handler.setCommand(Commands.FLY);
                 return drone.fly();
-            }else if (this.outOfRangeIteration == 2) {
+            } else if (this.outOfRangeIteration == 2) {
                 // Then scan
                 this.outOfRangeIteration++;
                 handler.setCommand(Commands.SCAN);
                 return drone.scan();
             } else if (this.outOfRangeIteration == 3) {
+                this.outOfRangeIteration++;
+                handler.setCommand(Commands.TURNRIGHT);
+                return drone.turnRight();
+            } else if (this.outOfRangeIteration == 4) {
+                this.outOfRangeIteration++;
+                handler.setCommand(Commands.FLY);
+                return drone.fly();
+            }else if (this.outOfRangeIteration == 5) {
+                this.outOfRangeIteration++;
+                handler.setCommand(Commands.TURNRIGHT);
+                return drone.turnRight();
+            } else if (this.outOfRangeIteration == 6) {
+                this.outOfRangeIteration++;
+                handler.setCommand(Commands.TURNRIGHT);
+                return drone.turnRight();
+            }  else if (this.outOfRangeIteration == 7) {
+                this.outOfRangeIteration++;
+                handler.setCommand(Commands.TURNRIGHT);
+                return drone.turnRight();
+            } else if (this.outOfRangeIteration == 8) {
+                this.outOfRangeIteration = 0;
+                this.iteration = 0;
+                handler.setCommand(Commands.SCAN);
+                return drone.scan();
+            }/*else if (this.outOfRangeIteration == 3) {
                 //now echo right
                 this.outOfRangeIteration++;
                 handler.setCommand(Commands.ECHORIGHT);
@@ -70,9 +95,7 @@ public class GroundNavigate implements Navigate {
                 } else {
                     handler.setCommand(Commands.TURNRIGHT);
                     return drone.turnRight();
-                }
-            }
-
+                }*/
         } else if (island.getForwardRange() > 0 && island.getForward() == Signal.GROUND) {
             if (this.groundIteration == 0) {
                 this.groundIteration++;
