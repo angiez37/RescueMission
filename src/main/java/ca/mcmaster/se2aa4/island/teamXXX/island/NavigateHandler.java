@@ -36,7 +36,7 @@ public class NavigateHandler {
             this.creekNavigate = new CreekNavigate(groundDirection);
             initializeCreekSearch = true;
         }
-        logger.info("searching for creek");
+        //logger.info("searching for creek");
         return this.creekNavigate.search(drone, island, handler);
     }
     
