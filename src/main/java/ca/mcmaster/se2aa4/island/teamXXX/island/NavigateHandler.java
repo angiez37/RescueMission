@@ -11,8 +11,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class NavigateHandler {
-    private Navigate groundNavigate = new GroundNavigate();
-    private Navigate creekNavigate;  //old code
+    private NavigateMap groundNavigate = new GroundNavigate();
+    private NavigateMap creekNavigate;  //old code
     private boolean groundFound = false;
     private boolean initializeCreekSearch = false;
 

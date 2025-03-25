@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public class GroundNavigate implements Navigate {
+public class GroundNavigate implements NavigateMap {
     private boolean groundFound = false;
     private Integer iteration = 0;
     private Integer outOfRangeIteration = 0;
