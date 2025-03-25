@@ -104,12 +104,7 @@ public class GroundNavigate implements Navigate {
             } else if (this.groundIteration < island.getForwardRange() + 1) {
                 this.groundIteration++;
                 handler.setCommand(Commands.FLY);
-                logger.info("ground almost found");
-                //if(this.groundFound == island.getForwardRange() +1){
-                    //this.groundDireciton = drone.getHeading();
-                  //  logger.info("direction facing when found:{}", this.groundDireciton);
-
-                //}
+        
                 return drone.fly();
             } else {
                 this.groundIteration = 0;

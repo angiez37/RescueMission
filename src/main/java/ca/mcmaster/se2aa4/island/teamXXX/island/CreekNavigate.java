@@ -71,7 +71,7 @@ public class CreekNavigate implements Navigate {
 
            
             //if none of the conditions are met
-            logger.info("drone stopping");
+           logger .info("drone stopping");
             handler.setCommand(Commands.STOP);
             return drone.stop();
         }
@@ -116,7 +116,7 @@ public class CreekNavigate implements Navigate {
 
     public JSONObject stopEdgeIsland(Drone drone, Island island, Handler handler){
         if(island.getForward() == Signal.OUTOFRANGE && ((island.getRight() == Signal.OUTOFRANGE && island.getRightRange() < 1) || (island.getLeft() == Signal.OUTOFRANGE && island.getLeftRange() < 1))) {
-            logger.info("drone reached the end of the island");
+
             handler.setCommand(Commands.STOP);
             return drone.stop();
         }
@@ -137,7 +137,7 @@ public class CreekNavigate implements Navigate {
             } else if (forwardIteration < island.getForwardRange() + 1) {
                 forwardIteration++;
                 handler.setCommand(Commands.FLY);
-                logger.info("successfully skipped water");
+               
                 return drone.fly();
             } else if (forwardIteration == island.getForwardRange() + 1) {
                 forwardIteration = 0;

@@ -26,17 +26,17 @@ public class NavigateHandler {
     public JSONObject search(Drone drone, Island island, Handler handler) {
         groundFound = this.groundNavigate.getGroundFound();
         if (!groundFound) {
-            logger.info("searching for ground");
+        
             return this.groundNavigate.search(drone, island, handler);
         }
         if(!initializeCreekSearch){
             //gotta change this following line 
             Direction groundDirection = ((GroundNavigate)groundNavigate).getStartDirection(); 
-            logger.info("naviagte handler - Start direction for creek navi is {}", groundDirection);
+           
             this.creekNavigate = new CreekNavigate(groundDirection);
             initializeCreekSearch = true;
         }
-        //logger.info("searching for creek");
+    
         return this.creekNavigate.search(drone, island, handler);
     }
     
