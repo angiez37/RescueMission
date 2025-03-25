@@ -12,8 +12,6 @@ import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 
 public class CreekNavigate implements NavigateMap {
     private Integer iteration = 0;
-    private Integer rightIteration = 0;
-    private Integer leftIteration = 0;
     private Integer turnIteration = 0;
     private Integer emptyFrontIteration = 0;
     private boolean emptyCheck = false;
