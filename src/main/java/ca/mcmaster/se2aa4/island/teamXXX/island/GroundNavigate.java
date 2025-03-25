@@ -10,7 +10,9 @@ import org.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
+/*
+ * responsible for drone to find edge of the island 
+ */
 public class GroundNavigate implements NavigateMap {
     private boolean groundFound = false;
     private Integer iteration = 0;
@@ -27,7 +29,10 @@ public class GroundNavigate implements NavigateMap {
     public boolean getGroundFound() {
         return groundFound;
     }
-
+/*Responsible for searching the map .
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public JSONObject search(Drone drone, Island island, Handler handler) {
         if (this.iteration == 0) {
 
@@ -54,11 +59,17 @@ public class GroundNavigate implements NavigateMap {
         }
      //   return handler.makeDecision(drone, island);
     }
-
+/*Responsible for getting initial direction.
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public Direction getStartDirection(){
         return groundDirection;
     }
-
+/*Responsible for echoing forward and scaning .
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     private JSONObject echoForwardScan(Drone drone, Island island , Handler handler)    {
         if (this.outOfRangeIteration == 0) {
             // First fly forward
@@ -107,13 +118,20 @@ public class GroundNavigate implements NavigateMap {
         }
 
     }
-
+/*Responsible for setting setting drone to face east after it find edge of island .
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     private JSONObject setInitialToEast(Drone drone, Handler handler) {
         this.outOfRangeIteration = 0;
         this.iteration = 0;
         handler.setCommand(Commands.SCAN);
         return drone.scan();
     }
+    /*Responsible for skipping water but ground is ahead  .
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     private JSONObject skipWaterGround(Drone drone, Island island, Handler handler){
         if (this.groundIteration == 0) {
             this.groundIteration++;
@@ -131,7 +149,10 @@ public class GroundNavigate implements NavigateMap {
         }
 
     }
-
+/*Responsible for moving forward once so drone on island .
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     private JSONObject moveOnceForward(Drone drone, Island island, Handler handler){
         if (this.groundIteration == 0) {
             this.groundIteration++;
