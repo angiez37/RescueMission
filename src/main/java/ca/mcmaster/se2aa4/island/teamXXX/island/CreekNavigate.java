@@ -8,7 +8,10 @@ import ca.mcmaster.se2aa4.island.teamXXX.drone.Commands;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 
-
+/*Responsible for navigating island and finding all POIS (Emergency sites and Creeks )
+ * 
+ * 
+*/
 
 public class CreekNavigate implements NavigateMap {
     private Integer iteration = 0;
@@ -25,7 +28,10 @@ public class CreekNavigate implements NavigateMap {
     public boolean getGroundFound() {
         return groundFound;
     }
-
+/*constructor - sets intial direction
+ * 
+ * 
+*/
     public CreekNavigate(Direction groundDirection) {
         this.dirSearch = groundDirection;
         if( groundDirection == Direction.EAST || this.dirSearch == Direction.NORTH){
@@ -34,7 +40,10 @@ public class CreekNavigate implements NavigateMap {
         }
         
     }
-
+/*Responsible for searching the island.
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public JSONObject search(Drone drone, Island island, Handler handler) {
         if(clockwiseSearch){  
             JSONObject echoNavigate = echo(drone, handler);
@@ -78,7 +87,10 @@ public class CreekNavigate implements NavigateMap {
     }
 
 
-
+/*Responsible for echo LEFT, RIGHT and FORWARD.
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public JSONObject echo(Drone drone, Handler handler) {
         if (iteration == 0) {
             iteration++;
@@ -95,7 +107,10 @@ public class CreekNavigate implements NavigateMap {
         }
         return null; 
     }
-
+/*Responsible for moving until it hits ground.
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public JSONObject forwardUntilGround(Drone drone, Island island, Handler handler) {
         if (island.getForward() == Signal.GROUND && island.getForwardRange() == 0) {
             if (forwardIteration == 0) {
@@ -111,7 +126,10 @@ public class CreekNavigate implements NavigateMap {
         }
         return null; 
     }
-
+/*Responsible for stopping navigation when hits edge of island.
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public JSONObject stopEdgeIsland(Drone drone, Island island, Handler handler){
         if(island.getForward() == Signal.OUTOFRANGE && ((island.getRight() == Signal.OUTOFRANGE && island.getRightRange() < 1) || (island.getLeft() == Signal.OUTOFRANGE && island.getLeftRange() < 1))) {
 
@@ -125,6 +143,10 @@ public class CreekNavigate implements NavigateMap {
         
 
     }
+    /*Responsible for skiping areas with water but ground ahead.
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
 
     public JSONObject skipWater(Drone drone, Island island, Handler handler){
         if (island.getForward() == Signal.GROUND && island.getForwardRange() > 0) {
@@ -146,7 +168,10 @@ public class CreekNavigate implements NavigateMap {
         } 
         return null;
     }
-
+/*Responsible for preparing drone in correct position and direction for rigth turn.
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public JSONObject prepareForRightTurn(Drone drone, Island island, Handler handler){
         if ((drone.getHeading() == Direction.EAST && turnIteration == 0 && island.getForward() == Signal.OUTOFRANGE && island.getRight() == Signal.GROUND && island.getRightRange() == 0 && emptyFrontIteration == 0)) {
             logger.info("flying before turning from east to west");
@@ -171,7 +196,10 @@ public class CreekNavigate implements NavigateMap {
 
     }
 
-
+/*Responsible for preparing drone to turn left. set's right direction and position
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public JSONObject prepareForLeftTurn(Drone drone, Island island, Handler handler){
         if ((drone.getHeading() == Direction.WEST && island.getForward() == Signal.OUTOFRANGE && island.getLeft() == Signal.GROUND && island.getLeftRange() == 0 && emptyFrontIteration == 1)){
             logger.info("flying before turning from west to east");
@@ -194,7 +222,10 @@ public class CreekNavigate implements NavigateMap {
         return null;   
     }
 
-
+/*Responsible for turning east .
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public JSONObject turnEast(Drone drone, Island island , Handler handler){
         if (island.getForward() == Signal.OUTOFRANGE && turnIteration == 0){
             if (forwardIteration == 0) {
@@ -235,7 +266,10 @@ public class CreekNavigate implements NavigateMap {
         }
         return null;
     }
-
+/*Responsible for turning west .
+ * parameters - Drone, iSLAND, Handler 
+ * 
+*/
     public JSONObject turnWest(Drone drone, Island island, Handler handler){
         if (island.getForward() == Signal.OUTOFRANGE && turnIteration == 1){
             if (forwardIteration == 0) {
